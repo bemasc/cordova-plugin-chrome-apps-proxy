@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  Copyright (c) 2015 The Chromium Authors. All rights reserved.
+  Use of this source code is governed by a BSD-style license that can be
+  found in the LICENSE file.
+-->
+<plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
+    id="cordova-plugin-chrome-apps-proxy"
+    version="0.0.0-dev">
+  <engines>
+    <engine name="cordova" version=">=3.0.0" />
+  </engines>
+
+  <name>Chrome Proxy API</name>
+  <keywords>chrome,proxy</keywords>
+  <repo>https://github.com/bemasc/cordova-plugin-chrome-apps-proxy.git</repo>
+  <issue>https://github.com/bemasc/cordova-plugin-chrome-apps-proxy/issues</issue>
+
+  <js-module src="proxy.js" name="proxy">
+    <clobbers target="chrome.proxy" />
+  </js-module>
+
+  <platform name="android">
+    <source-file src="src/android/ChromeProxy.java" target-dir="src/org/chromium" />
+
+    <config-file target="res/xml/config.xml" parent="/widget">
+      <feature name="ChromeProxy">
+        <param name="android-package" value="org.chromium.ChromeProxy"/>
+      </feature>
+    </config-file>
+  </platform>
+</plugin>
