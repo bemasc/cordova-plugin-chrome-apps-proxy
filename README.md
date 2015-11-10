@@ -21,5 +21,5 @@ The API reference is [here](https://developer.chrome.com/extensions/proxy).
 
 # Release Notes
 
-## 0.0.0
+## 0.0.1
 - First implementation
