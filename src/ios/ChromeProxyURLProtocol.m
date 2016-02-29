@@ -38,9 +38,11 @@ static NSString *requestHandedKey = @"ChromeProxyURLProtocolHandledKey";
     NSMutableURLRequest *newRequest = [self.request mutableCopy];
     [NSURLProtocol setProperty:@YES forKey:requestHandedKey inRequest:newRequest];
     
-    // Load task.
+    // Load task with the request.
     self.session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:nil];
     self.task = [self.session dataTaskWithRequest:newRequest];
+    NSLog(@"%@ Loading URL %@", LOG_TAG, newRequest.URL.absoluteString);
+
     [self.task resume];
 }
 
@@ -50,8 +52,7 @@ static NSString *requestHandedKey = @"ChromeProxyURLProtocolHandledKey";
 }
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler {
-    // Allow caching for faster load time.
-    [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowed];
+    [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
     completionHandler(NSURLSessionResponseAllow);
 }
 

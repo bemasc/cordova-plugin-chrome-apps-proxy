@@ -1,7 +1,7 @@
 /*
  Header for ChromeProxy
  
- ChromeProxy receives the set and clear commands from Cordova 
+ ChromeProxy receives the get, set, and clear commands from Cordova
  to enable and disable proxying.
 */
 
@@ -25,8 +25,7 @@
 - (void)clear:(CDVInvokedUrlCommand *)command;
 
 /* Sends plugin result with success or error. */
-- (void)sendPluginResult:(CDVInvokedUrlCommand *)command
-               withError:(NSString *)errorMessage;
+- (void)sendPluginResult:(CDVInvokedUrlCommand *)command withError:(NSString *)errorMessage;
 
 /* The proxy settings that will be  set to the custom 
  NSURLSessionConfiguration's connectionProxyDictionary
@@ -35,9 +34,7 @@
 + (NSDictionary *)proxyDictionary;
 
 /* Sets the scheme, host, and port for proxyDictionary. */
-+ (void)setProxy:(NSString *) scheme
-        withHost:(NSString *) host
-        withPort:(NSNumber *) port;
++ (void)setProxy:(NSString *)scheme withHost:(NSString *)host withPort:(NSNumber *)port;
 
 @end
 

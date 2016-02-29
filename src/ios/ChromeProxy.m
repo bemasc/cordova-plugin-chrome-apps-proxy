@@ -1,7 +1,7 @@
 /*
  Implementation for ChromeProxy
  
- ChromeProxy receives the set and clear commands from Cordova
+ ChromeProxy receives the get, set, and clear commands from Cordova
  to enable and disable proxying.
  */
 
@@ -26,6 +26,7 @@ static NSDictionary *proxyDictionary;
                         (NSString *)[NSString stringWithFormat:@"%@Proxy", scheme]:host,
                         (NSString *)[NSString stringWithFormat:@"%@Port", scheme]:port,
                         };
+    NSLog(@"%@ Set proxyDictionary: %@", LOG_TAG, proxyDictionary);
 }
 
 + (NSDictionary *)proxyDictionary {
