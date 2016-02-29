@@ -10,11 +10,11 @@
 @implementation ChromeProxyURLProtocol
 
 static NSString *LOG_TAG = @"[ChromeProxyURLProtocol]";
-static NSString *requestHandedKey = @"ChromeProxyURLProtocolHandledKey";
+static NSString *requestHandledKey = @"ChromeProxyURLProtocolHandledKey";
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
     // Don't handle request if it's already been handled by this protocol.
-    if ([NSURLProtocol propertyForKey:requestHandedKey inRequest:request]) return NO;
+    if ([NSURLProtocol propertyForKey:requestHandledKey inRequest:request]) return NO;
     
     // Handle request if we haven't handled it yet and we've already
     // set up a proxy server in ChromeProxy.
@@ -36,13 +36,12 @@ static NSString *requestHandedKey = @"ChromeProxyURLProtocolHandledKey";
     
     // Tell the protocol that we've handled the request.
     NSMutableURLRequest *newRequest = [self.request mutableCopy];
-    [NSURLProtocol setProperty:@YES forKey:requestHandedKey inRequest:newRequest];
+    [NSURLProtocol setProperty:@YES forKey:requestHandledKey inRequest:newRequest];
     
     // Load task with the request.
     self.session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:nil];
     self.task = [self.session dataTaskWithRequest:newRequest];
     NSLog(@"%@ Loading URL %@", LOG_TAG, newRequest.URL.absoluteString);
-
     [self.task resume];
 }
 
