@@ -22,9 +22,9 @@ static NSDictionary *proxyDictionary;
 
 + (void)setProxy:(NSString *)scheme withHost:(NSString *)host withPort:(NSNumber *)port {
     proxyDictionary = @{
-                        (NSString *)[NSString stringWithFormat:@"%@Enable", scheme]:[NSNumber numberWithInt:1],
-                        (NSString *)[NSString stringWithFormat:@"%@Proxy", scheme]:host,
-                        (NSString *)[NSString stringWithFormat:@"%@Port", scheme]:port,
+                        [NSString stringWithFormat:@"%@Enable", scheme]:@YES,
+                        [NSString stringWithFormat:@"%@Proxy", scheme]:host,
+                        [NSString stringWithFormat:@"%@Port", scheme]:port,
                         };
     NSLog(@"%@ Set proxyDictionary: %@", LOG_TAG, proxyDictionary);
 }
@@ -86,7 +86,7 @@ static NSDictionary *proxyDictionary;
     } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     }
-    [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
+    [pluginResult setKeepCallback:@YES;
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
