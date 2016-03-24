@@ -45,11 +45,12 @@ static NSDictionary *proxyDictionary;
     NSDictionary* commandValue = [command argumentAtIndex:0];
     NSDictionary* singleProxy = commandValue[@"value"][@"rules"][@"singleProxy"];
     
-    if(!singleProxy){
+    if (!singleProxy) {
         errorMessage = @"Failed to parse cordova command for singleProxy";
         return [self sendPluginResult:command withError:errorMessage];
     }
 
+    // TODO: Implement bypassList support
     NSString* proxyHost = singleProxy[@"host"];
     NSNumber* proxyPort = singleProxy[@"port"];
     if (proxyHost && proxyPort) {

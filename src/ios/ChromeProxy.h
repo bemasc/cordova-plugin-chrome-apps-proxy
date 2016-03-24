@@ -37,6 +37,3 @@
 + (void)setProxy:(NSString *)scheme withHost:(NSString *)host withPort:(NSNumber *)port;
 
 @end
-
-
-
