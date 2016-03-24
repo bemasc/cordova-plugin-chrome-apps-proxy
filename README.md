@@ -15,7 +15,7 @@ supported for the "http" scheme.
 
 On iOS, only the "http" and "socks5" schemes are supported.
 
-Currently, bypassList is not supported on either platform.
+Currently bypassList is not supported on either platform.
 
 Other platforms are not supported.
 
